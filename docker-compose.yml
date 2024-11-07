@@ -57,34 +57,37 @@ services:
         hard: -1
     networks:
       - skywalking-network
-    volumes:
-      - /data/elasticsearch-data:/usr/share/elasticsearch/data
-  # nodejs:
-  #   build:
-  #     context: ./nodejs-agent
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - ./nodejs-agent:/app
-  #     - /app/node_modules
-  #   networks:
-  #     - skywalking-network
-  #   depends_on:
-  #     oap:
-  #       condition: service_healthy
+    # volumes:
+    #   - /data/elasticsearch-data:/usr/share/elasticsearch/data
 
-  # golang:
-  #   build:
-  #     context: ./go-agent
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "8000:8000"
-  #   networks:
-  #     - skywalking-network
-  #   depends_on:
-  #     oap:
-  #       condition: service_healthy
+  nodejs:
+    container_name: nodejs
+    build:
+      context: ./nodejs-agent
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nodejs-agent:/app
+      - /app/node_modules
+    networks:
+      - skywalking-network
+    depends_on:
+      oap:
+        condition: service_healthy
+
+  golang:
+    container_name: golang
+    build:
+      context: ./go-agent
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - skywalking-network
+    depends_on:
+      oap:
+        condition: service_healthy
 
 networks:
   skywalking-network:

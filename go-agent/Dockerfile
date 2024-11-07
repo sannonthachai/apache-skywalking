@@ -31,7 +31,6 @@ COPY --from=builder /app/myapp .
 
 ENV SW_AGENT_REPORTER_GRPC_BACKEND_SERVICE="oap:11800"
 ENV SW_AGENT_NAME="golang"
-ENV SW_AGENT_INSTANCE_NAME="golang-$(openssl rand -hex 4)"
 
 # Expose the port that your application will run on
 EXPOSE 8000

@@ -6,11 +6,13 @@ const port = 3000
 agent.start()
 
 app.get('/', (req, res) => {
+    console.log('Method: Get, Path: "/"')
     res.send('Hello World!')
 })
 
 app.get('/golang', async (req, res) => {
-    const { data } = await axios.get('https://golang')
+    console.log(`Method: Get, Path: "/golang", Time: ${new Date().toLocaleString}`)
+    const { data } = await axios.get('http://golang:8000')
     return res.json(data)
 })
 
