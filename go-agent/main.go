@@ -1,13 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"net/http"
-	"time"
 
 	"github.com/labstack/echo/v4"
+	"go.uber.org/zap"
 
 	// This is an important step. DON'T MISS IT.
 	_ "github.com/apache/skywalking-go"
@@ -15,14 +14,16 @@ import (
 
 func main() {
 	e := echo.New()
+	logger := zap.Must(zap.NewProduction())
+	defer logger.Sync()
 
 	e.GET("/", func(c echo.Context) error {
-		fmt.Printf("Method: Get, Path: '/', Date: %s", time.Now().Format("2006-01-02 15:04:05"))
+		logger.Info("Method: Get, Path: '/'")
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
 	e.GET("/nodejs", func(c echo.Context) error {
-		fmt.Printf("Method: Get, Path: '/nodejs', Date: %s", time.Now().Format("2006-01-02 15:04:05"))
+		logger.Info("Method: Get, Path: '/nodejs'")
 
 		resp, err := http.Get("http://nodejs:3000")
 		if err != nil {
