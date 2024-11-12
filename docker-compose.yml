@@ -51,14 +51,15 @@ services:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ports:
       - "9200:9200"
+    user: root
     ulimits:
       memlock:
         soft: -1
         hard: -1
     networks:
       - skywalking-network
-    # volumes:
-    #   - /data/elasticsearch-data:/usr/share/elasticsearch/data
+    volumes:
+      - /data/elasticsearch-data:/usr/share/elasticsearch/data
 
   nodejs:
     container_name: nodejs
