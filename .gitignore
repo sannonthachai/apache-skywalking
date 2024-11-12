@@ -1,1 +1,53 @@
 node_modules/
+
+# Ignore build results
+bin/
+obj/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+*.vs/
+.vscode/
+.vsix/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Ignore local application settings
+appsettings.*.json
+
+# OS-specific files
+Thumbs.db
+.DS_Store
+
+# Rider IDE files
+.idea/
+*.sln.iml
+
+# Visual Studio Code files
+.vscode/
+
+# Logs
+*.log
+
+# Generated files
+*.generated.cs
+*.dll
+*.exe
+*.cache
+*.pdb
+
+# DotNet Publish
+publish/
+
+# NuGet packages
+*.nupkg
+packages/

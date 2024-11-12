@@ -4,12 +4,13 @@ const axios = require('axios')
 const winston = require('winston');
 const app = express()
 const port = 3000
+agent.start()
+
 const logger = winston.createLogger({
     level: 'info',
     format: winston.format.json(),
     transports: [new winston.transports.Console()],
 })
-agent.start()
 
 app.get('/', (req, res) => {
     logger.info('Method: Get, Path: "/"')
@@ -17,7 +18,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/golang', async (req, res) => {
-    logger.info(`Method: Get, Path: "/golang", Time: ${new Date().toLocaleString}`)
+    logger.info(`Method: Get, Path: "/golang"`)
     const { data } = await axios.get('http://golang:8000')
     return res.json(data)
 })

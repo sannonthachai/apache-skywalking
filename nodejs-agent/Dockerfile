@@ -15,6 +15,7 @@ COPY . .
 
 ENV SW_AGENT_COLLECTOR_BACKEND_SERVICES="oap:11800"
 ENV SW_AGENT_NAME="nodejs"
+ENV SW_AGENT_LOGGING_LEVEL="info"
 
 # Expose the port the app runs on
 EXPOSE 3000

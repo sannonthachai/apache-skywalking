@@ -89,5 +89,18 @@ services:
       oap:
         condition: service_healthy
 
+  dotnet:
+    container_name: dotnet
+    build:
+      context: ./sampleapp
+      dockerfile: Dockerfile
+    ports:
+      - "5072:8080"
+    networks:
+      - skywalking-network
+    depends_on:
+      oap:
+        condition: service_healthy
+
 networks:
   skywalking-network:
