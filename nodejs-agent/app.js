@@ -4,7 +4,10 @@ const axios = require('axios')
 const winston = require('winston');
 const app = express()
 const port = 3000
-agent.start()
+
+if (process.env.SW_AGENT_COLLECTOR_BACKEND_SERVICES) {
+    agent.start()
+}
 
 const logger = winston.createLogger({
     level: 'info',
