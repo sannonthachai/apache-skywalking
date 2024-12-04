@@ -61,6 +61,22 @@ services:
     volumes:
       - /data/elasticsearch-data:/usr/share/elasticsearch/data
 
+  nestjs:
+    container_name: nestjs
+    build:
+      context: ./nestjs
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./nestjs:/app
+      - /app/node_modules
+    networks:
+      - skywalking-network
+    depends_on:
+      oap:
+        condition: service_healthy
+
   nodejs:
     container_name: nodejs
     build:
