@@ -136,3 +136,21 @@ Services
 
 Skywalking UI
 - start with port 8080
+
+# Oauth2 Proxy
+SkyWalking doesn’t provide login and authentication as usual for years. If you need, a lot of Gateway solutions have provides well-established solutions, such as the Nginx ecosystem. (https://skywalking.apache.org/docs/main/next/en/ui/readme/#login-and-authentication)
+
+Integrating OAuth2 Proxy with SkyWalking UI allows you to implement user authentication seamlessly, leveraging industry-standard OAuth2 protocols.
+
+### Implementation Steps
+1. Set Up OAuth2 Proxy:
+    - Install and configure OAuth2 Proxy with your preferred OAuth2 provider.
+    - Provide the necessary client ID, client secret, and callback URL.
+2. Integrate with SkyWalking UI:
+    - Deploy OAuth2 Proxy as a reverse proxy in front of SkyWalking UI.
+    - Update your ingress or load balancer configuration to route traffic through OAuth2 Proxy.
+3. Test Authentication:
+    - Verify that users are redirected to the identity provider's login page when accessing the SkyWalking UI.
+    - Ensure only authenticated users can access the interface.
+4. Optional Enhancements:
+    - Configure role-based access or group filtering in OAuth2 Proxy if supported by your identity provider.
