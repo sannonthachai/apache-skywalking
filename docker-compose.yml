@@ -61,6 +61,19 @@ services:
     volumes:
       - /data/elasticsearch-data:/usr/share/elasticsearch/data
 
+  otel_collector:
+    networks:
+      - skywalking-network
+    image: otel/opentelemetry-collector-contrib:0.114.0
+    volumes:
+      - ${OTEL_CONFIG_SRC:-./otel-collector-config-connector.yml}:/etc/otelcol/otel-collector-config.yml
+    command: --config /etc/otelcol/otel-collector-config.yml
+    ports:
+      - "4317:4317" # OTLP gRPC receiver
+      - "4318:4318" # OTLP HTTP receiver
+      - "8888:8888" # Debugging endpoint
+      - "8889:8889" # Prometheus metrics endpoint
+
   nestjs:
     container_name: nestjs
     build:
